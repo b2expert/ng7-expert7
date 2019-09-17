@@ -1,0 +1,21 @@
+<table *ngIf="dataSource" [ngClass]="tStyle.tClass">
+    <thead>
+        <tr>
+            <th *ngFor="let col of dataSource.dataHeaders" (click)="onSort(col)">
+                {{col.dbColName}}
+                <i [ngClass]="col.sortDirection === 'asc' ? tStyle?.sortClass?.up: ''"></i>
+                <i [ngClass]="col.sortDirection === 'desc' ? tStyle?.sortClass?.down: ''"></i>
+            </th>
+            <th *ngIf="isOptions">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let colArray of dataSource.dataRows">
+            <td *ngFor="let col of colArray">{{col.displayValue}}</td>
+            <td *ngIf="isOptions">
+                <a [ngClass]="tStyle.optionBtnSetClass.edit" (click)="onClickOption(colArray, 'edit')">EDIT</a>
+                <a [ngClass]="tStyle.optionBtnSetClass.delete" (click)="onClickOption(colArray, 'delete')">DELETE</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,48 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "expert-grid": [
+        "dist/expert-grid"
+      ],
+      "expert-grid/*": [
+        "dist/expert-grid/*"
+      ],
+      "expert-gridcls": [
+        "dist/expert-gridcls"
+      ],
+      "expert-gridcls/*": [
+        "dist/expert-gridcls/*"
+      ],
+      "expert-select": [
+        "dist/expert-select"
+      ],
+      "expert-select/*": [
+        "dist/expert-select/*"
+      ],
+      "b2e-grid": [
+        "dist/b2e-grid"
+      ],
+      "b2e-grid/*": [
+        "dist/b2e-grid/*"
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col text-center bg-primary p-2" *ngIf="inputProductList.length === 0">Loading...</div>
+    <ng-container *ngIf="inputProductList.length > 0">
+      <div class="col-md-3 col-sm-6" *ngFor="let product of inputProductList">
+        <div class="product-grid">
+          <div class="product-image">
+            <a href="#">
+              <img class="pic-1" [attr.src]="product.thumb1" />
+              <img class="pic-2" [attr.src]="product.thumb2" />
+            </a>
+            <ul class="social">
+              <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+              <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+              <li>
+                <a class="cursor-pointer" href="javascript:void(0)" (click)="addProductToCart(product)"
+                  data-tip="Add to Cart">
+                  <i class="fa fa-shopping-cart cursor-pointer"></i>
+                </a>
+              </li>
+            </ul>
+            <span class="product-new-label">Sale</span>
+            <span class="product-discount-label">
+              {{product.offerIn === '%' ? '': 'Rs.'}}
+              {{product.offer}}{{product.offerIn === '%' ? product.offerIn: ''}}
+            </span>
+          </div>
+          <ul class="rating">
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star disable"></li>
+          </ul>
+          <div class="product-content">
+            <h3 class="title"><a href="#">{{product.title}}</a></h3>
+            <div class="price">
+              Rs.{{product.price - (product.offerIn === '%' ? product.price*product.offer/100: product.offer )}}
+              <span>Rs.{{product.price}}</span>
+            </div>
+            <a class="btn btn-primary add-to-cart text-white cursor-pointer"
+              (click)="addProductToCart(product)">+ Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

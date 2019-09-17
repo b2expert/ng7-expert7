@@ -1,0 +1,9 @@
+<lib-b2eGrid [dataSource]="gridData" [tStyle]="{
+    tClass: 'table table-bordered table-responsive',
+    sortClass: {up: 'c-i up', down: 'c-i down'},
+    optionBtnSetClass: {edit: 'btn btn-primary rounded-0 text-white', 
+                        delete: 'btn btn-danger rounded-0 text-white ml-3'
+                       }
+}" [isServerSort]="false" [isOptions]="true" (onSort)="onColSort($event)"
+(onOptionClick)="onOptionClick($event)">
+</lib-b2eGrid>

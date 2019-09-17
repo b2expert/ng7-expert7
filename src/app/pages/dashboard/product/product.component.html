@@ -1,0 +1,25 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control form-control-sm rounded-0" />
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label>Price</label>
+        <input type="text" class="form-control form-control-sm rounded-0" />
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group mt-4">
+        <button class="btn btn-primary rounded-0 btn-sm text-uppercase">search</button>
+      </div>
+    </div>
+  </div>
+  <app-e-product-list [dataSource]="productService.productList"
+    (addProduct2CartEvt)="productService.addProductToCart($event)">
+  </app-e-product-list>
+</div>
