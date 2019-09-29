@@ -7,6 +7,7 @@ import { UserComponent } from './user/user.component';
 import { UserModule } from './user/user.module';
 import { CartService } from '../../services/cart.service';
 import { NavigationComponent } from './layout/navigation/navigation.component';
+import { AppMatModule } from '../../app-mat.module';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: 'user',
         component: UserComponent
+      },
+      {
+        path: 'emp',
+        loadChildren: './emp/emp-container.module#EmpContainerModule'        
       },
       {
         path: 'product',
@@ -37,6 +42,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     UserModule,
+    AppMatModule,
     RouterModule.forChild(routes)
   ],
   providers: [
