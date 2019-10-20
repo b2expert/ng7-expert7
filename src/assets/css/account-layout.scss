@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
-
 html,
 body {
     background-image: url('./assets/images/544750.jpg');
@@ -15,11 +14,11 @@ body {
 }
 
 .card {
-    height: 370px;
+    // height: 370px;
     margin-top: auto;
     margin-bottom: auto;
-    width: 400px;
-    background-color: rgba(0, 0, 0, 0.5) !important;
+    // width: 400px;
+    // background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .social_icon span {
@@ -53,7 +52,6 @@ body {
 input:focus {
     outline: 0 0 0 0 !important;
     box-shadow: 0 0 0 0 !important;
-
 }
 
 .remember {

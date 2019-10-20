@@ -1,5 +1,116 @@
-<p>
-    emp-register works!
-</p>
+<div class="row sticky-header">
+    <div class="col-10">
+        <h4>Register New Employee</h4>
+    </div>
+    <div class="col">
+        <i class="fa fa-times text-danger pull-right pointer-cursor" (click)="closeDialog()"></i>
+    </div>
+</div>
+<hr>
 
-<button class="btn btn-sm btn-primary" (click)="closeDialog()">Close</button>
+<form (submit)="onFormSubmit()" name="empRegisterForm" #empRegisterForm="ngForm" autocomplete="off">
+
+    <div class="row">
+        <div class="col-3">
+            <div class="form-group">
+                <mat-form-field>
+                    <input matInput name="name" [(ngModel)]="newEmp.name" autocomplete="off" placeholder="Enter your name..." #name="ngModel" minlength="5" maxlength="15" required />
+                    <mat-hint *ngIf="name.touched || name.dirty">
+                        <mat-hint class="text-danger" *ngIf="name.errors?.required">Name field is required!</mat-hint>
+                        <mat-hint class="text-danger" *ngIf="name.errors?.minlength">Name field must have minimum of 5 character long!</mat-hint>
+                        <mat-hint class="text-danger" *ngIf="name.errors?.maxlength">Name field must have maximum of 15 character long!</mat-hint>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <mat-form-field>
+                    <input matInput name="email" autocomplete="off" [(ngModel)]="newEmp.email" placeholder="Enter valid email..." #email="ngModel" [pattern]="emailRegex" required />
+                    <mat-hint *ngIf="email.touched || email.dirty">
+                        <mat-hint class="text-danger" *ngIf="email.errors?.required">Email field is required!</mat-hint>
+                        <mat-hint class="text-danger" *ngIf="email.errors?.pattern">Invalid email!</mat-hint>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <mat-form-field>
+                    <input matInput name="phone" autocomplete="off" [(ngModel)]="newEmp.phone" placeholder="Enter 10 digit mobile number..." />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <mat-form-field>
+                    <input matInput name="dob" autocomplete="off" [(ngModel)]="newEmp.dob" placeholder="Enter date of birth..." />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <ng-container>
+        <h6>Members</h6>
+        <hr />
+        <div class="row" *ngFor="let m of newEmp.members; let colIndex = index">
+            <i class="fa fa-trash cursor-pointer" (click)="deleteMember(m)"></i>
+            <div class="col-3">
+                <mat-form-field>
+                    <input matInput name="name_{{colIndex}}" [(ngModel)]="m.name" autocomplete=" off " placeholder="Enter your name... " #name="ngModel" required />
+                    <mat-hint *ngIf="name.touched || name.dirty ">
+                        <mat-hint class="text-danger" *ngIf="name.errors?.required">Name field is required!
+                        </mat-hint>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field>
+                    <input matInput name="email_{{colIndex}}" [(ngModel)]="m.email" autocomplete="off" placeholder="Enter your email... " #email="ngModel" />
+                    <mat-hint *ngIf="email.touched || email.dirty ">
+                        <mat-hint class="text-danger" *ngIf="email.errors?.pattern">Name field is required!
+                        </mat-hint>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field>
+                    <input matInput name="phone_{{colIndex}}" [(ngModel)]="m.phone" autocomplete="off" placeholder="Enter your phone... " #phone="ngModel" maxlength="10" minlength="10" pattern="^[0-9]*$" />
+                    <mat-hint *ngIf="phone.touched || phone.dirty">
+                        <mat-hint class="text-danger" *ngIf="phone.errors?.pattern">Phone field must have 10 digit mobile number!
+                        </mat-hint>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field>
+                    <input matInput name="dob_{{colIndex}}" [(ngModel)]="m.dob" autocomplete=" off " placeholder="Enter your dob... " #dob="ngModel" pattern="\d{1,2}-\d{1,2}-\d{4}" required />
+                    <mat-hint *ngIf="dob.touched || dob.dirty">
+                        <mat-hint class="text-danger" *ngIf="dob.errors?.required">DOB field is required!
+                        </mat-hint>
+                        <mat-hint class="text-danger" *ngIf="dob.errors?.pattern">Invalid DOB, should be MM-DD-YYYY format
+                        </mat-hint>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+    </ng-container>
+
+    <hr />
+    <div class="row mt-3 sticky-footer">
+        <div class="col">
+            <div class="btn-group btn-group-sm">
+                <button mat-raised-button type="button" class="btn rounded-0 btn-outline-primary border-primary" (click)="closeDialog()">CLOSE</button>
+                <button mat-raised-button type="button" class="btn rounded-0 btn-outline-primary border-primary ml-3" (click)="addMember()">+ Family Member</button>
+            </div>
+        </div>
+        <div class="col">
+            <div class="btn-group btn-group-sm pull-right">
+                <button mat-raised-button type="button" class="btn rounded-0 btn-outline-secondary border-secondary" (click)="onReset()">RESET</button>
+                <button mat-raised-button type="submit" [disabled]="empRegisterForm.form.invalid" class="btn rounded-0 ml-3 btn-primary border-primary">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+</form>

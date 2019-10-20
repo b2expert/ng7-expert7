@@ -1,0 +1,51 @@
+<form (submit)="registerBookSevice.requestForSave()" autocomplete="off" #inputForm="ngForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" *ngFor="let field of registerBookSevice.fields; let colIndex = index">
+                <div class="form-group">
+                    <label for="{{field.displayCode}}_{{colIndex}}">{{field.displayName}}</label>
+                    <div [ngSwitch]="field.attrType">
+
+                        <div *ngSwitchCase="'TEXTBOX'">
+                            <input type="text" class="form-control form-control-sm" name="{{field.displayCode}}" [required]="field.isRequired" [disabled]="field.isDisabled" [pattern]="field.pattern" [minlength]="field.minLength" [maxlength]="field.maxLength" [(ngModel)]="field.value"
+                                #inputRef="ngModel" [ngClass]="{'border-danger': inputRef.errors}" />
+
+                            <label *ngIf="inputRef && (inputRef.touched || inputRef.dirty)">
+                                <label for="" class="text-danger"
+                                    *ngIf="inputRef.errors?.required">{{field.errorMessage.required}}</label>
+                            <label for="" class="text-danger" *ngIf="inputRef.errors?.minlength">{{field.errorMessage.minLength}}</label>
+                            <label for="" class="text-danger" *ngIf="inputRef.errors?.maxlength">{{field.errorMessage.maxLength}}</label>
+                            <label for="" class="text-danger" *ngIf="inputRef.errors?.pattern">{{field.errorMessage.pattern}}</label>
+                            </label>
+                        </div>
+
+                        <div *ngSwitchCase="'SELECT'">
+                            <select class="form-control form-control-sm" name="{{field.displayCode}}" #inputRef="ngModel" [ngClass]="{'border-danger': inputRef.errors}" [required]="field.isRequired" [disabled]="field.isDisabled" [(ngModel)]="field.value">
+                                <option [value]="option.code" *ngFor="let option of field.options">{{option.title}}
+                                </option>
+                            </select>
+
+                            <label *ngIf="inputRef && (inputRef.touched || inputRef.dirty)">
+                                <label for="" class="text-danger"
+                                    *ngIf="inputRef.errors?.required">{{field.errorMessage.required}}</label>
+                            <label for="" class="text-danger" *ngIf="inputRef.errors?.minlength">{{field.errorMessage.minLength}}</label>
+                            <label for="" class="text-danger" *ngIf="inputRef.errors?.maxlength">{{field.errorMessage.maxLength}}</label>
+                            <label for="" class="text-danger" *ngIf="inputRef.errors?.pattern">{{field.errorMessage.pattern}}</label>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <div class="btn-group-sm pull-right">
+                    <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary pl-2 pr-2 text-uppercase" (click)="registerBookSevice.onReset()">Reset</button>
+                    <button type="submit" [disabled]="inputForm.invalid" class="btn rounded-0 btn-sm btn-primary pl-2 pr-2 ml-3 text-uppercase">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

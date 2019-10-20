@@ -1,0 +1,17 @@
+.sticky-footer {
+    position: sticky;
+    bottom: -25px;
+    background-color: #f2f2f2;
+    padding: 10px 0px 10px 0px;
+    margin: 0px -24px 0px -24px;
+}
+
+.sticky-header {
+    position: sticky;
+    top: -30px;
+    border-bottom: 1px solid rgba(154, 147, 147, 0.1);
+    background-color: #ffffff;
+    padding: 10px 0px 10px 0px;
+    margin: -22px -24px 0px -24px;
+    z-index: 999999;
+}

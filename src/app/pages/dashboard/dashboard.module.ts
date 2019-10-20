@@ -29,6 +29,10 @@ const routes: Routes = [
       {
         path: 'product',
         loadChildren: './product/product.module#ProductModule'
+      },
+      {
+        path: 'registerBook',
+        loadChildren: './register-book-container/register-book-container.module#RegisterBookContainerModule'
       }
     ]
   }
